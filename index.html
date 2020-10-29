@@ -1962,8 +1962,26 @@ Under~the~null~hypothesis:\chi^2_{stat} \sim \chi^2_1
 \]</span></p>
 </div>
 </div>
-<div id="fishers-exact-and-mcnemar" class="section level1">
-<h1>Fisher’s Exact and McNemar</h1>
+<div id="fishers-exact-and-mcnemars-test" class="section level1">
+<h1>Fisher’s Exact and McNemar’s Test</h1>
+<div id="fishers" class="section level2">
+<h2>Fisher’s</h2>
+<p><span class="math inline">\(H_0:the~relative~proportions~of~one~variable~are~independent~of~the~second~variable\)</span></p>
+</div>
+<div id="mcnemars" class="section level2">
+<h2>McNemar’s</h2>
+<p><span class="math display">\[
+\begin{split}
+H_0:p=\frac{1}{2}\\
+H_1:p\neq \frac{1}{2}\\
+n_A\sim Bin(n_D,0.5)\\
+\chi^2_{stat}=\frac{(|n_A-\frac{n_D}{2}|-\frac{1}{2})^2}{\frac{n_D}{4}}=\frac{(|n_A-n_B|-1)^2}{n_A+n_B}
+\end{split}
+\]</span></p>
+<p><strong>Decision Rule:</strong></p>
+<p>Reject<span class="math inline">\(H_0\)</span> if <span class="math inline">\(\chi^2_{stat}&gt;\chi^2_{1,1-\alpha}\)</span>.</p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise.</p>
+</div>
 </div>
 
 

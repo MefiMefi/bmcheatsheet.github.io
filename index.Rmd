@@ -499,6 +499,26 @@ Under~the~null~hypothesis:\chi^2_{stat} \sim \chi^2_1
 $$
 
 
-# Fisher's Exact and McNemar
+# Fisher's Exact and McNemar's Test
+
+## Fisher's
+
+$H_0:the~relative~proportions~of~one~variable~are~independent~of~the~second~variable$
 
 
+## McNemar's
+
+$$
+\begin{split}
+H_0:p=\frac{1}{2}\\
+H_1:p\neq \frac{1}{2}\\
+n_A\sim Bin(n_D,0.5)\\
+\chi^2_{stat}=\frac{(|n_A-\frac{n_D}{2}|-\frac{1}{2})^2}{\frac{n_D}{4}}=\frac{(|n_A-n_B|-1)^2}{n_A+n_B}
+\end{split}
+$$
+
+**Decision Rule:**
+
+Reject$H_0$ if $\chi^2_{stat}>\chi^2_{1,1-\alpha}$.
+
+Fail to reject $H_0$ otherwise.
