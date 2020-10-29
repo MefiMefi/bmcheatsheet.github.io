@@ -414,20 +414,91 @@ $$
 H_0:p=p_0\\
 H_1: p \neq p_0\\
 \hat p = \frac{\sum_{i=1}^{n}X_i}{n}=\frac{X}{n}\\
-Z_{stat} = \frac{\hat p -p_0}{\sqrt{p_0(1-p_0)/n}}
+Z_{stat} = \frac{|\hat p -p_0|-\frac{1}{2n}}{\sqrt{p_0(1-p_0)/n}}\sim N(0,1),under~H_0    
 \end{split}
 $$
 
 **Decision Rule:**
 
-Reject $H_0$
+Reject $H_0$ if $|Z_{stat}|> Z_{1-\alpha/2}$,
+
+fail to reject $H_0$ otherwise.
+
+Pvalue = $2\times [1-\Phi (Z_{stat})]$
+
+
+$100(1-\alpha)\%~CI: (\hat p -Z_{1-\alpha/2}\cdot\sqrt{\frac{\hat p(1-\hat p)}{n}}-\frac{1}{2n},\hat p +Z_{1-\alpha/2}\cdot\sqrt{\frac{\hat p(1-\hat p)}{n}}-\frac{1}{2n})$
+
+**if assumption of normal approximation is not valid**
+
+If$\hat p \leq p_0$,Pvalue = $2\times Pr(\leq x~successes~in~n~trials|H_0) = \sum_{k=0}^{x} \binom{n}{k}p_0^k(1-p_0)^{n-k}$
+
+If$\hat p \geq p_0$,Pvalue = $2\times Pr(\geq x~successes~in~n~trials|H_0) = \sum_{k=x}^{n} \binom{n}{k}p_0^k(1-p_0)^{n-k}$
+
+$$
+\begin{split}
+Exact~100(1-\alpha)\%~CI:(p_L,p_U)\\
+where,\\
+P(X\geq x|p=p_L)=\frac{\alpha}{2}=\sum_{k=x}^{n}\binom{n}{k}p_L^k(1-p_L)^{n-k}\\
+P(X\leq x|p=p_U)=\frac{\alpha}{2}=\sum_{k=0}^{x}\binom{n}{k}p_U^k(1-p_U)^{n-k}
+\end{split}
+$$
 
 
 # Two Sample Prop
 
+$$
+\begin{split}
+\hat p_1\sim N(p_1,p_1(1-p_1)/n_1)\\
+\hat p_2\sim N(p_2,p_1(1-p_2)/n_2)\\
+\hat p_1 -\hat p_2 \sim N(p_1-p_2,\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2})\\
+H_0: p1=p2=p\\
+H_1:p1 \neq p2\\
+if~the~null~hypothesis~is~true:\\
+\hat p_1 -\hat p_2 \sim N(0,p(1-p)\cdot (\frac{1}{n_1}+\frac{1}{n_2}))\\
+Z_{stat} = \frac{|\hat p_1 -\hat p_2|-(\frac{1}{2n_1}+\frac{1}{2n_1})}{\sqrt{\hat p \hat q (\frac{1}{n_1}+\frac{1}{n_2})}},~where,\\
+\hat p = \frac{n_1\hat p_1+n2\hat p_2}{n_1+n_2}~and~\hat q=1- \hat p
+\end{split}
+$$
 
+**Decision Rule:**
+
+Reject $H_0$ if $|Z_{stat}|>Z_{1-\alpha/2}$,
+
+Fail to reject $H_0$ otherwise.
+
+$$Two-sided~100(1-\alpha)\%~CI=\hat p_1 -\hat p_2\pm Z_{1-\alpha/2}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}$$
 
 
 # Chi_Sq
 
+## Test of Homogeneity
+
+
+$$
+\begin{split}
+H_0:p_{1j} =p_{2j}=...=p_{Rj}=p_(.j)\\
+H_1: p_{ij}\neq p_{i'j},~j=1,2,...,C,i\neq i'\\
+\chi^2_{stat} = \sum_i^{R}\sum_j^{C}\frac{(n_{ij}-E_{ij})^2}{E_{ij}} \sim \chi^2_{ (R-1)\times(C-1)},where~df = (R-1)\times(C-1)
+\end{split}
+$$
+
+
+**Decision Rule:**
+
+Reject $H_0$ if $\chi^2_{stat}>\chi^2_{(R-1)\times(C-1),1-\alpha}$,
+
+Fail to reject $H_0$ otherwise.
+
+## Test of independence
+
+$$
+\begin{split}
+Under~the~null~hypothesis:\chi^2_{stat} \sim \chi^2_1
+\end{split}
+$$
+
+
 # Fisher's Exact and McNemar
+
+
