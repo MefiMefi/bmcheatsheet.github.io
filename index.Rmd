@@ -11,17 +11,422 @@ output:
 
 # Discrete Distribution
 
+## Binomial
+$$X \sim Bin(n,p)$$
+
+```{r binomial}
+
+```
+$$P({X}=k)\ = \binom{n}{k} p^k(1-p)^{n-k}$$
+$$P(X \leq k)=\sum_{i=0}^{k}\binom{n}{i}p^i(1-p)^{n-i}$$
+
+## Poisson
+
+$$X \sim Poi(\lambda)$$
+
+```{r poisson}
+
+```
+$$P(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}$$
+$$P(X \leq k) = \sum_{i=0}^{k}\frac{\lambda^{i}e^{-\lambda}}{i!}$$
+
 # Continuos Distribution
+
+## Uniform Distribution
+
+$$X\sim Unif(a,b)$$
+
+The pdf of uniform distribution is:
+
+$$f(x) = \frac{1}{b-a}$$
+$$P(X\leq k) = P(X<k)= \int_{a}^{k}f(x)dx = \int_{a}^{k}\frac{1}{b-a}dx,~(a\leq k \leq b) $$
+```{r unif}
+
+```
+
+
+## Normal Distribution
+
+$$X \sim(\mu,\sigma^2)$$
+The pdf of normal distribution is:
+$$f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}$$
+The standard normal distribution:
+$$Z=\frac{X-\mu}{\sigma}\sim N(0,1)$$
+$$\phi(z) = \frac{1}{\sqrt{2\pi}}e^{\frac{-z^2}{2}}$$
+
+$$P(X\leq k) = P(Z \leq \frac{k-\mu}{\sigma}) = P(Z \leq Z_{score})$$
+$$Z_\alpha = P(Z <Z_\alpha) = \alpha$$
+```{r norm}
+
+```
+
+## Normal Approximation to Binomial and Poisson
+
+Rule of Thumb:
+$$np \geq 10, ~n(1-p) \geq 10$$
+$$X\sim N(np,np(1-p))~or~ X\sim(\lambda,\lambda)$$
+
+
+
+Continuity Correction:
+$$to~ be~ continue$$
+
+
+## Student's t-Distribution
+
+$$T\sim t(v)$$
+
 
 # One Sample Mean
 
+## Interval Estimation
+
+Construct the 95% CI for the true mean:
+$$
+\begin{split}
+n=10\\
+\sigma =15\\
+\bar X = 175\\
+\alpha = 5\%\\
+95\% CI: \bar X \pm Z_{1-\alpha/2} \cdot \sigma/ \sqrt n\\ 
+= 175 \pm Z_{0.975}\cdot15/\sqrt{10} \\
+= (175-1.96\cdot 15/\sqrt{10},175+1.96\cdot 15/\sqrt{10})\\
+=(165.70,184.30)
+\end{split}
+$$
+
+## Test for the Mean of a Normal Distribution with Known Variance
+
+
+$$X\sim N(\mu,\sigma^2)$$
+
+### One-sided Test
+
+* left tailed
+
+$$
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu<\mu_0\\
+\bar X=\\
+n = \\
+\sigma = \\
+\alpha = \\
+Z_{stat}= \frac{\bar X - \mu_0}{\sigma/\sqrt{n}}\\
+Z_{critical}=Z_{\alpha} \\
+Z_{stat} \sim N(0,1) \ under \ the \ null
+\end{split}
+$$
+
+**Decision Rule:**
+
+reject $H_0$ if $Z_{stat} < Z_{\alpha}$
+
+Fail to reject $H_0$ otherwise.
+
+P-value = $Pr(Z< Z_{stat} | H_0)$
+
+
+At 5% significance level, $Z<Z_{critical}$, $Pval<$, we reject the null and conclude that there is a significant difference in ...
+
+
+* Right tailed
+
+$$
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu>\mu_0\\
+\bar X=\\
+n = \\
+\sigma = \\
+\alpha = \\
+Z_{stat}= \frac{\bar X - \mu_0}{\sigma/\sqrt{n}}\\
+Z_{critical}=Z_{1-\alpha} \\
+Z_{stat} \sim N(0,1) \ under \ the \ null
+\end{split}
+$$
+
+**Decision Rule:**
+
+reject $H_0$ if $Z_{stat} > Z_{1-\alpha}$
+
+Fail to reject $H_0$ otherwise.
+
+P-value = $Pr(Z > Z_{stat} | H_0)$
+
+
+At 5% significance level, $Z_{stat}>Z_{critical}$, $Pval<$, we reject the null and conclude that there is a significant difference in ...
+
+
+### Two-sided Test
+
+$$
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu \neq \mu_0\\
+\bar X=\\
+n = \\
+\sigma = \\
+\alpha = \\
+Z_{stat}= \frac{\bar X - \mu_0}{\sigma/\sqrt{n}}\\
+Z_{critical}=Z_{1-\alpha/2} \\
+Z_{stat} \sim N(0,1) \ under \ the \ null
+\end{split}
+$$
+
+**Decision Rule:**
+
+reject $H_0$ if $|Z_{stat}| > Z_{1-\alpha/2}$
+
+Fail to reject $H_0$ otherwise.
+
+P-value = $2\times Pr(Z > Z_{stat} | H_0)$, if $Z_{stat} \geq 0$, or
+
+P-value = $2\times Pr(Z < Z_{stat} | H_0)$, if $Z_{stat} \leq 0$
+
+
+At 5% significance level, $|Z_{stat}|>Z_{critical}$, $Pval<$, we reject the null and conclude that there is a significant difference in ...
+
+
+## Test for the Mean of a Normal Distribution with Unknown Variance
+
+### One-sided Test
+
+* left tailed
+
+$$
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu<\mu_0\\
+\bar X=\\
+n = \\
+s = \\
+\alpha = \\
+t_{stat}= \frac{\bar X - \mu_0}{s/\sqrt{n}}\\
+t_{critical}=t_{n-1,\alpha} \\
+t_{stat} \sim T(n-1) \ under \ the \ null
+\end{split}
+$$
+
+**Decision Rule:**
+
+reject $H_0$ if $t_{stat} < t_{\alpha}$
+
+Fail to reject $H_0$ otherwise.
+
+P-value = $Pr(t_{n-1} < t_{stat} | H_0)$
+
+
+At 5% significance level, $t_{stat}<t_{critical}$, $Pval<$, we reject the null and conclude that there is a significant difference in ...
+
+
+* Right tailed
+
+$$
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu>\mu_0\\
+\bar X=\\
+n = \\
+s = \\
+\alpha = \\
+t_{stat}= \frac{\bar X - \mu_0}{s/\sqrt{n}}\\
+t_{critical}=t_{n-1,1-\alpha} \\
+t_{stat} \sim T(n-1) \ under \ the \ null
+\end{split}
+$$
+
+**Decision Rule:**
+
+reject $H_0$ if $t_{stat} > t_{1-\alpha}$
+
+Fail to reject $H_0$ otherwise.
+
+P-value = $Pr(t_{n-1} > t_{stat} | H_0)$
+
+
+At 5% significance level, $t_{stat}>t_{critical}$, $Pval<$, we reject the null and conclude that there is a significant difference in ...
+
+
+### Two-sided Test
+
+$$
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu \neq \mu_0\\
+\bar X=\\
+n = \\
+s = \\
+\alpha = \\
+t_{stat}= \frac{\bar X - \mu_0}{s/\sqrt{n}}\\
+t_{critical}=t_{n-1,1-\alpha/2} \\
+t_{stat} \sim T(n-1) \ under \ the \ null
+\end{split}
+$$
+
+**Decision Rule:**
+
+reject $H_0$ if $|t_{stat}| > t_{n-1,1-\alpha/2}$
+
+Fail to reject $H_0$ otherwise.
+
+P-value = $2\times Pr(t_{n-1} > t_{stat} | H_0)$, if $t_{stat} \geq 0$, or
+
+P-value = $2\times Pr(t_{n-1} < t_{stat} | H_0)$, if $t_{stat} \leq 0$
+
+
+At 5% significance level, $|t_{stat}|>t_{critical}$, $Pval<$, we reject the null and conclude that there is a significant difference in ...
+
 # Two Sample Mean
+
+## Paired t-test
+
+This is a sample from hw3.
+
+$$
+\begin{split}
+H_0 = \mu_{post} - \mu_{pre} = \Delta = 0 \\
+H_1 = \mu_{post} - \mu_{pre} = \Delta \neq 0 \\
+d_1 = -8.57 \\
+S_{d1} = 17.17 \\
+n = 36\\
+t_{stat}= \frac{\bar{d_1}}{S_{d1}/\sqrt{n}}=\frac{-8.58}{17.17/\sqrt{36}} = -2.99 \\
+t_{critical}=t_{n-1, 1-\alpha/2}= t_{35, 0.975}=2.03 \\
+t_{stat} \sim t_{35} \ under \ the \ null
+\end{split}
+$$
+
+**Decision Rule:**
+
+reject $H_0$ if $|t_{stat}| > t_{35, 0.975}$
+
+Fail to reject $H_0$ otherwise.
+
+Pvalue = $2* Pr(t_{35} < t_{stat} | H_0) = 2* Pr(t_{35} < -2.99 | H_0) = 0.005$
+
+
+At 5% sifnificance level, $|t_{stat}|>t_{critical}$, $Pval<0.05$, we reject the null and conclude that there is a significant difference in ...
+
+
+$$CI = \bar d \pm t_{n-1, 1-\alpha/2} \times s_d/ \sqrt n$$ 
+
+## Test for Equality of Variance
+
+$$
+\begin{split}
+H_0 = \sigma^2_{d1} = \sigma^2_{d0} \\
+H_1 = \sigma^2_{d1} \neq \sigma^2_{d0} \\
+F_{stat}= \frac {s^2_{d1}}{s^2_{d0}} \sim F_{35,35} \ Under \ the \ Null \\
+F_{stat}= \frac {17.17^2}{14.81^2} = 1.34 \\
+F_{critical} = F_{35, 35, 0.975} = 1.96
+\end{split}
+$$
+
+**Decision Rule:**
+
+reject $H_0$ if $F_{stat} > F_{35, 35, 0.975}$
+
+Fail to reject $H_0$ otherwise
+
+Pvalue = $2* Pr(F_{n_1-1,n_2-1} < F_{stat} | H_0),if~ F<1$, or $2* Pr(F_{n_1-1,n_2-1} > F_{stat} | H_0),if~ F\geq 1$
+
+At 5% significance level, $F_{stat}< F_{critical}$, we fail to reject the null and conclude that there is not enough evidence to support a difference in the population variances.
+
+
+## Two-sample independent test, equal variance
+
+$$
+\begin{split}
+H_0 = \mu_{d1} - \mu_{d0} = 0 \\
+H_1 = \mu_{d1} - \mu_{d0} \neq 0
+\end{split}
+$$
+
+
+$$
+\begin{split}
+\bar{X_1} - \bar{X_2} \sim N(\mu_1-\mu_2,\frac{\sigma^2}{n_1}+\frac{\sigma^2}{n_2}) ~if~ the~ population~ variance~ is~ given\\
+otherwise,\\
+t_{stat} = \frac {\bar{X_{d1}} - \bar{X_{d0}}} {s\sqrt {1/n_1 + 1/n_0}} \sim t_{n_1+n_0-2, 1-\alpha/2} \\
+where \ s= \sqrt{\frac{(n_1-1)s_1^2+(n_0-1)s_0^2}{n_1+n_2-2}} \\
+s = \sqrt{\frac{(35)(219.34)+(35)(294.81)}{70}} = 16.03 \\
+t_{stat} = \frac {-8.58 + 3.33}{(16.03)\sqrt {1/36 + 1/36}} = -1.39 \\
+t_{critical} = t_{n_1+n_0-2, 1-\alpha/2} = t_{70, 0.975} = 1.99
+\end{split}
+$$
+**Decision Rule:**
+
+reject $H_0$ if $|t_{stat}| > t_{critical}$
+
+Fail to reject $H_0$ otherwise.
+
+Pvalue = $2* Pr(t_{70} < t_{stat} | H_0) =2* Pr(t_{70} < -1.39 | H_0)$ = 0.17
+
+At 5% significance level, $|t_{stat}|<t_{critical}$, $Pval>0.05$, we fail to reject the null and conclude that there is not enough evidence to support a difference in the mean SBP between the intervention group and control group.  
+
+This conclusion is supported by the 95% confidence interval since 0 is contained within the interval:  
+
+$$ CI = \bar{X_{d1}} - \bar{X_{d0}} \pm t_{n_1+n_0-2, 1-\alpha/2} \times s \sqrt {1/n_1 + 1/n_0} = (-8.58 + 3.33) \pm 1.99 \times 16.03 \sqrt{1/36 + 1/36} = (-12.77, 2.27)$$
+
+## Two-sample independent test, unequal variance
+
+$$
+\begin{split}
+\bar{X_1} - \bar{X_2} \sim N(\mu_1-\mu_2,\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}) ~if~ the~ population~ variance~ is~ given\\
+otherwise,\\
+t_{stat} = \frac{\bar{X_1} - \bar{X_2}}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}~\sim t_{d''}\\
+d'' =[d'],~where,\\
+d' = \frac{(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2})^2}{\frac{s_1^2}{n_1}^2/(n_1-1)+\frac{s_2^2}{n_2}^2/(n_2-1)}
+\end{split}
+$$
 
 # ANOVA
 
+
+$$
+\begin{split}
+H_0: \mu_1=\mu_2=...=\mu _k\\
+H_1: at~least~two~means~are~not~equal\\
+Between~SS = \sum_{i=1}^k\sum_{j=1}^{n_i}(\bar{y_i} - \bar{\bar{y}})^2\\
+Within~SS = \sum_{i=1}^k\sum_{j=1}^{n_i}(y_{ij}-\bar{y_i})^2\\
+Between~Mean~Square = \frac{\sum_{i=1}^k\sum_{j=1}^{n_i}(\bar{y_i} - \bar{\bar{y}})^2}{k-1}=\sum_{i=1}^kn_i\bar{y_i}^2-\frac{y_{..}^2}{n}\\
+Within~Mean~Square = \frac{\sum_{i=1}^k\sum_{j=1}^{n_i}(y_{ij}-\bar{y_i})^2}{n-k}=\sum_{i=1}^k(n_i-1)s_i^2\\
+F_{stat} = \frac{Between~Mean~Square}{Within~Mean~Square} \sim F(k-1,n-k)
+\end{split}
+$$
+
+
+**Decision Rule:**
+
+Reject $H_0$ if $F>F_{k-1,n-k,1-\alpha}$
+
+Fail to reject $H_0$ otherwise.
+
+Pvalue = $Pr(F_{k-1,n-k}>F_{stat})$
+
+
 # One Sample Prop
 
+$$\bar X \sim N(p,\frac{p(1-p)}{n})$$
+
+$$
+\begin{split}
+H_0:p=p_0\\
+H_1: p \neq p_0\\
+\hat p = \frac{\sum_{i=1}^{n}X_i}{n}=\frac{X}{n}\\
+Z_{stat} = \frac{\hat p -p_0}{\sqrt{p_0(1-p_0)/n}}
+\end{split}
+$$
+
+**Decision Rule:**
+
+Reject $H_0$
+
+
 # Two Sample Prop
+
+
+
 
 # Chi_Sq
 

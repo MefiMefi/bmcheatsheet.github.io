@@ -1599,18 +1599,296 @@ div.tocify {
 
 <div id="discrete-distribution" class="section level1">
 <h1>Discrete Distribution</h1>
+<div id="binomial" class="section level2">
+<h2>Binomial</h2>
+<p><span class="math display">\[X \sim Bin(n,p)\]</span></p>
+<p><span class="math display">\[P({X}=k)\ = \binom{n}{k} p^k(1-p)^{n-k}\]</span> <span class="math display">\[P(X \leq k)=\sum_{i=0}^{k}\binom{n}{i}p^i(1-p)^{n-i}\]</span></p>
+</div>
+<div id="poisson" class="section level2">
+<h2>Poisson</h2>
+<p><span class="math display">\[X \sim Poi(\lambda)\]</span></p>
+<p><span class="math display">\[P(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}\]</span> <span class="math display">\[P(X \leq k) = \sum_{i=0}^{k}\frac{\lambda^{i}e^{-\lambda}}{i!}\]</span></p>
+</div>
 </div>
 <div id="continuos-distribution" class="section level1">
 <h1>Continuos Distribution</h1>
+<div id="uniform-distribution" class="section level2">
+<h2>Uniform Distribution</h2>
+<p><span class="math display">\[X\sim Unif(a,b)\]</span></p>
+<p>The pdf of uniform distribution is:</p>
+<p><span class="math display">\[f(x) = \frac{1}{b-a}\]</span> <span class="math display">\[P(X\leq k) = P(X&lt;k)= \int_{a}^{k}f(x)dx = \int_{a}^{k}\frac{1}{b-a}dx,~(a\leq k \leq b) \]</span></p>
+</div>
+<div id="normal-distribution" class="section level2">
+<h2>Normal Distribution</h2>
+<p><span class="math display">\[X \sim(\mu,\sigma^2)\]</span> The pdf of normal distribution is: <span class="math display">\[f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}\]</span> The standard normal distribution: <span class="math display">\[Z=\frac{X-\mu}{\sigma}\sim N(0,1)\]</span> <span class="math display">\[\phi(z) = \frac{1}{\sqrt{2\pi}}e^{\frac{-z^2}{2}}\]</span></p>
+<p><span class="math display">\[P(X\leq k) = P(Z \leq \frac{k-\mu}{\sigma}) = P(Z \leq Z_{score})\]</span> <span class="math display">\[Z_\alpha = P(Z &lt;Z_\alpha) = \alpha\]</span></p>
+</div>
+<div id="normal-approximation-to-binomial-and-poisson" class="section level2">
+<h2>Normal Approximation to Binomial and Poisson</h2>
+<p>Rule of Thumb: <span class="math display">\[np \geq 10, ~n(1-p) \geq 10\]</span> <span class="math display">\[X\sim N(np,np(1-p))~or~ X\sim(\lambda,\lambda)\]</span></p>
+<p>Continuity Correction: <span class="math display">\[to~ be~ continue\]</span></p>
+</div>
+<div id="students-t-distribution" class="section level2">
+<h2>Student’s t-Distribution</h2>
+<p><span class="math display">\[T\sim t(v)\]</span></p>
+</div>
 </div>
 <div id="one-sample-mean" class="section level1">
 <h1>One Sample Mean</h1>
+<div id="interval-estimation" class="section level2">
+<h2>Interval Estimation</h2>
+<p>Construct the 95% CI for the true mean: <span class="math display">\[
+\begin{split}
+n=10\\
+\sigma =15\\
+\bar X = 175\\
+\alpha = 5\%\\
+95\% CI: \bar X \pm Z_{1-\alpha/2} \cdot \sigma/ \sqrt n\\ 
+= 175 \pm Z_{0.975}\cdot15/\sqrt{10} \\
+= (175-1.96\cdot 15/\sqrt{10},175+1.96\cdot 15/\sqrt{10})\\
+=(165.70,184.30)
+\end{split}
+\]</span></p>
+</div>
+<div id="test-for-the-mean-of-a-normal-distribution-with-known-variance" class="section level2">
+<h2>Test for the Mean of a Normal Distribution with Known Variance</h2>
+<p><span class="math display">\[X\sim N(\mu,\sigma^2)\]</span></p>
+<div id="one-sided-test" class="section level3">
+<h3>One-sided Test</h3>
+<ul>
+<li>left tailed</li>
+</ul>
+<p><span class="math display">\[
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu&lt;\mu_0\\
+\bar X=\\
+n = \\
+\sigma = \\
+\alpha = \\
+Z_{stat}= \frac{\bar X - \mu_0}{\sigma/\sqrt{n}}\\
+Z_{critical}=Z_{\alpha} \\
+Z_{stat} \sim N(0,1) \ under \ the \ null
+\end{split}
+\]</span></p>
+<p><strong>Decision Rule:</strong></p>
+<p>reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(Z_{stat} &lt; Z_{\alpha}\)</span></p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise.</p>
+<p>P-value = <span class="math inline">\(Pr(Z&lt; Z_{stat} | H_0)\)</span></p>
+<p>At 5% significance level, <span class="math inline">\(Z&lt;Z_{critical}\)</span>, <span class="math inline">\(Pval&lt;\)</span>, we reject the null and conclude that there is a significant difference in …</p>
+<ul>
+<li>Right tailed</li>
+</ul>
+<p><span class="math display">\[
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu&gt;\mu_0\\
+\bar X=\\
+n = \\
+\sigma = \\
+\alpha = \\
+Z_{stat}= \frac{\bar X - \mu_0}{\sigma/\sqrt{n}}\\
+Z_{critical}=Z_{1-\alpha} \\
+Z_{stat} \sim N(0,1) \ under \ the \ null
+\end{split}
+\]</span></p>
+<p><strong>Decision Rule:</strong></p>
+<p>reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(Z_{stat} &gt; Z_{1-\alpha}\)</span></p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise.</p>
+<p>P-value = <span class="math inline">\(Pr(Z &gt; Z_{stat} | H_0)\)</span></p>
+<p>At 5% significance level, <span class="math inline">\(Z_{stat}&gt;Z_{critical}\)</span>, <span class="math inline">\(Pval&lt;\)</span>, we reject the null and conclude that there is a significant difference in …</p>
+</div>
+<div id="two-sided-test" class="section level3">
+<h3>Two-sided Test</h3>
+<p><span class="math display">\[
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu \neq \mu_0\\
+\bar X=\\
+n = \\
+\sigma = \\
+\alpha = \\
+Z_{stat}= \frac{\bar X - \mu_0}{\sigma/\sqrt{n}}\\
+Z_{critical}=Z_{1-\alpha/2} \\
+Z_{stat} \sim N(0,1) \ under \ the \ null
+\end{split}
+\]</span></p>
+<p><strong>Decision Rule:</strong></p>
+<p>reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|Z_{stat}| &gt; Z_{1-\alpha/2}\)</span></p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise.</p>
+<p>P-value = <span class="math inline">\(2\times Pr(Z &gt; Z_{stat} | H_0)\)</span>, if <span class="math inline">\(Z_{stat} \geq 0\)</span>, or</p>
+<p>P-value = <span class="math inline">\(2\times Pr(Z &lt; Z_{stat} | H_0)\)</span>, if <span class="math inline">\(Z_{stat} \leq 0\)</span></p>
+<p>At 5% significance level, <span class="math inline">\(|Z_{stat}|&gt;Z_{critical}\)</span>, <span class="math inline">\(Pval&lt;\)</span>, we reject the null and conclude that there is a significant difference in …</p>
+</div>
+</div>
+<div id="test-for-the-mean-of-a-normal-distribution-with-unknown-variance" class="section level2">
+<h2>Test for the Mean of a Normal Distribution with Unknown Variance</h2>
+<div id="one-sided-test-1" class="section level3">
+<h3>One-sided Test</h3>
+<ul>
+<li>left tailed</li>
+</ul>
+<p><span class="math display">\[
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu&lt;\mu_0\\
+\bar X=\\
+n = \\
+s = \\
+\alpha = \\
+t_{stat}= \frac{\bar X - \mu_0}{s/\sqrt{n}}\\
+t_{critical}=t_{n-1,\alpha} \\
+t_{stat} \sim T(n-1) \ under \ the \ null
+\end{split}
+\]</span></p>
+<p><strong>Decision Rule:</strong></p>
+<p>reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(t_{stat} &lt; t_{\alpha}\)</span></p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise.</p>
+<p>P-value = <span class="math inline">\(Pr(t_{n-1} &lt; t_{stat} | H_0)\)</span></p>
+<p>At 5% significance level, <span class="math inline">\(t_{stat}&lt;t_{critical}\)</span>, <span class="math inline">\(Pval&lt;\)</span>, we reject the null and conclude that there is a significant difference in …</p>
+<ul>
+<li>Right tailed</li>
+</ul>
+<p><span class="math display">\[
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu&gt;\mu_0\\
+\bar X=\\
+n = \\
+s = \\
+\alpha = \\
+t_{stat}= \frac{\bar X - \mu_0}{s/\sqrt{n}}\\
+t_{critical}=t_{n-1,1-\alpha} \\
+t_{stat} \sim T(n-1) \ under \ the \ null
+\end{split}
+\]</span></p>
+<p><strong>Decision Rule:</strong></p>
+<p>reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(t_{stat} &gt; t_{1-\alpha}\)</span></p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise.</p>
+<p>P-value = <span class="math inline">\(Pr(t_{n-1} &gt; t_{stat} | H_0)\)</span></p>
+<p>At 5% significance level, <span class="math inline">\(t_{stat}&gt;t_{critical}\)</span>, <span class="math inline">\(Pval&lt;\)</span>, we reject the null and conclude that there is a significant difference in …</p>
+</div>
+<div id="two-sided-test-1" class="section level3">
+<h3>Two-sided Test</h3>
+<p><span class="math display">\[
+\begin{split}
+H_0 : \mu=\mu_0\\
+H_1 : \mu \neq \mu_0\\
+\bar X=\\
+n = \\
+s = \\
+\alpha = \\
+t_{stat}= \frac{\bar X - \mu_0}{s/\sqrt{n}}\\
+t_{critical}=t_{n-1,1-\alpha/2} \\
+t_{stat} \sim T(n-1) \ under \ the \ null
+\end{split}
+\]</span></p>
+<p><strong>Decision Rule:</strong></p>
+<p>reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|t_{stat}| &gt; t_{n-1,1-\alpha/2}\)</span></p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise.</p>
+<p>P-value = <span class="math inline">\(2\times Pr(t_{n-1} &gt; t_{stat} | H_0)\)</span>, if <span class="math inline">\(t_{stat} \geq 0\)</span>, or</p>
+<p>P-value = <span class="math inline">\(2\times Pr(t_{n-1} &lt; t_{stat} | H_0)\)</span>, if <span class="math inline">\(t_{stat} \leq 0\)</span></p>
+<p>At 5% significance level, <span class="math inline">\(|t_{stat}|&gt;t_{critical}\)</span>, <span class="math inline">\(Pval&lt;\)</span>, we reject the null and conclude that there is a significant difference in …</p>
+</div>
+</div>
 </div>
 <div id="two-sample-mean" class="section level1">
 <h1>Two Sample Mean</h1>
+<div id="paired-t-test" class="section level2">
+<h2>Paired t-test</h2>
+<p>This is a sample from hw3.</p>
+<p><span class="math display">\[
+\begin{split}
+H_0 = \mu_{post} - \mu_{pre} = \Delta = 0 \\
+H_1 = \mu_{post} - \mu_{pre} = \Delta \neq 0 \\
+d_1 = -8.57 \\
+S_{d1} = 17.17 \\
+n = 36\\
+t_{stat}= \frac{\bar{d_1}}{S_{d1}/\sqrt{n}}=\frac{-8.58}{17.17/\sqrt{36}} = -2.99 \\
+t_{critical}=t_{n-1, 1-\alpha/2}= t_{35, 0.975}=2.03 \\
+t_{stat} \sim t_{35} \ under \ the \ null
+\end{split}
+\]</span></p>
+<p><strong>Decision Rule:</strong></p>
+<p>reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|t_{stat}| &gt; t_{35, 0.975}\)</span></p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise.</p>
+<p>Pvalue = <span class="math inline">\(2* Pr(t_{35} &lt; t_{stat} | H_0) = 2* Pr(t_{35} &lt; -2.99 | H_0) = 0.005\)</span></p>
+<p>At 5% sifnificance level, <span class="math inline">\(|t_{stat}|&gt;t_{critical}\)</span>, <span class="math inline">\(Pval&lt;0.05\)</span>, we reject the null and conclude that there is a significant difference in …</p>
+<p><span class="math display">\[CI = \bar d \pm t_{n-1, 1-\alpha/2} \times s_d/ \sqrt n\]</span></p>
+</div>
+<div id="test-for-equality-of-variance" class="section level2">
+<h2>Test for Equality of Variance</h2>
+<p><span class="math display">\[
+\begin{split}
+H_0 = \sigma^2_{d1} = \sigma^2_{d0} \\
+H_1 = \sigma^2_{d1} \neq \sigma^2_{d0} \\
+F_{stat}= \frac {s^2_{d1}}{s^2_{d0}} \sim F_{35,35} \ Under \ the \ Null \\
+F_{stat}= \frac {17.17^2}{14.81^2} = 1.34 \\
+F_{critical} = F_{35, 35, 0.975} = 1.96
+\end{split}
+\]</span></p>
+<p><strong>Decision Rule:</strong></p>
+<p>reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(F_{stat} &gt; F_{35, 35, 0.975}\)</span></p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise</p>
+<p>Pvalue = <span class="math inline">\(2* Pr(F_{n_1-1,n_2-1} &lt; F_{stat} | H_0),if~ F&lt;1\)</span>, or <span class="math inline">\(2* Pr(F_{n_1-1,n_2-1} &gt; F_{stat} | H_0),if~ F\geq 1\)</span></p>
+<p>At 5% significance level, <span class="math inline">\(F_{stat}&lt; F_{critical}\)</span>, we fail to reject the null and conclude that there is not enough evidence to support a difference in the population variances.</p>
+</div>
+<div id="two-sample-independent-test-equal-variance" class="section level2">
+<h2>Two-sample independent test, equal variance</h2>
+<p><span class="math display">\[
+\begin{split}
+H_0 = \mu_{d1} - \mu_{d0} = 0 \\
+H_1 = \mu_{d1} - \mu_{d0} \neq 0
+\end{split}
+\]</span></p>
+<p><span class="math display">\[
+\begin{split}
+\bar{X_1} - \bar{X_2} \sim N(\mu_1-\mu_2,\frac{\sigma^2}{n_1}+\frac{\sigma^2}{n_2}) ~if~ the~ population~ variance~ is~ given\\
+otherwise,\\
+t_{stat} = \frac {\bar{X_{d1}} - \bar{X_{d0}}} {s\sqrt {1/n_1 + 1/n_0}} \sim t_{n_1+n_0-2, 1-\alpha/2} \\
+where \ s= \sqrt{\frac{(n_1-1)s_1^2+(n_0-1)s_0^2}{n_1+n_2-2}} \\
+s = \sqrt{\frac{(35)(219.34)+(35)(294.81)}{70}} = 16.03 \\
+t_{stat} = \frac {-8.58 + 3.33}{(16.03)\sqrt {1/36 + 1/36}} = -1.39 \\
+t_{critical} = t_{n_1+n_0-2, 1-\alpha/2} = t_{70, 0.975} = 1.99
+\end{split}
+\]</span> <strong>Decision Rule:</strong></p>
+<p>reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|t_{stat}| &gt; t_{critical}\)</span></p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise.</p>
+<p>Pvalue = <span class="math inline">\(2* Pr(t_{70} &lt; t_{stat} | H_0) =2* Pr(t_{70} &lt; -1.39 | H_0)\)</span> = 0.17</p>
+<p>At 5% significance level, <span class="math inline">\(|t_{stat}|&lt;t_{critical}\)</span>, <span class="math inline">\(Pval&gt;0.05\)</span>, we fail to reject the null and conclude that there is not enough evidence to support a difference in the mean SBP between the intervention group and control group.</p>
+<p>This conclusion is supported by the 95% confidence interval since 0 is contained within the interval:</p>
+<p><span class="math display">\[ CI = \bar{X_{d1}} - \bar{X_{d0}} \pm t_{n_1+n_0-2, 1-\alpha/2} \times s \sqrt {1/n_1 + 1/n_0} = (-8.58 + 3.33) \pm 1.99 \times 16.03 \sqrt{1/36 + 1/36} = (-12.77, 2.27)\]</span></p>
+</div>
+<div id="two-sample-independent-test-unequal-variance" class="section level2">
+<h2>Two-sample independent test, unequal variance</h2>
+<p><span class="math display">\[
+\begin{split}
+\bar{X_1} - \bar{X_2} \sim N(\mu_1-\mu_2,\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}) ~if~ the~ population~ variance~ is~ given\\
+otherwise,\\
+t_{stat} = \frac{\bar{X_1} - \bar{X_2}}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}~\sim t_{d&#39;&#39;}\\
+d&#39;&#39; =[d&#39;],~where,\\
+d&#39; = \frac{(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2})^2}{\frac{s_1^2}{n_1}^2/(n_1-1)+\frac{s_2^2}{n_2}^2/(n_2-1)}
+\end{split}
+\]</span></p>
+</div>
 </div>
 <div id="anova" class="section level1">
 <h1>ANOVA</h1>
+<p><span class="math display">\[
+\begin{split}
+H_0: \mu_1=\mu_2=...=\mu _k\\
+H_1: at~least~two~means~are~not~equal\\
+Between~SS = \sum_{i=1}^k\sum_{j=1}^{n_i}(\bar{y_i} - \bar{\bar{y}})^2\\
+Within~SS = \sum_{i=1}^k\sum_{j=1}^{n_i}(y_{ij}-\bar{y_i})^2\\
+Between~Mean~Square = \frac{\sum_{i=1}^k\sum_{j=1}^{n_i}(\bar{y_i} - \bar{\bar{y}})^2}{k-1}=\sum_{i=1}^kn_i\bar{y_i}^2-\frac{y_{..}^2}{n}\\
+Within~Mean~Square = \frac{\sum_{i=1}^k\sum_{j=1}^{n_i}(y_{ij}-\bar{y_i})^2}{n-k}=\sum_{i=1}^k(n_i-1)s_i^2\\
+F_{stat} = \frac{Between~Mean~Square}{Within~Mean~Square} \sim F(k-1,n-k)
+\end{split}
+\]</span></p>
+<p><strong>Decision Rule:</strong></p>
+<p>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(F&gt;F_{k-1,n-k,1-\alpha}\)</span></p>
+<p>Fail to reject <span class="math inline">\(H_0\)</span> otherwise.</p>
+<p>Pvalue = <span class="math inline">\(Pr(F_{k-1,n-k}&gt;F_{stat})\)</span></p>
 </div>
 <div id="one-sample-prop" class="section level1">
 <h1>One Sample Prop</h1>
