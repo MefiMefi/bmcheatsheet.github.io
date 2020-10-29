@@ -1602,11 +1602,17 @@ div.tocify {
 <div id="binomial" class="section level2">
 <h2>Binomial</h2>
 <p><span class="math display">\[X \sim Bin(n,p)\]</span></p>
+<pre class="r"><code>#$$X \sim Bin(n,p)$$
+#$$P({X}=k)\ = \binom{n}{k} p^k(1-p)^{n-k}$$
+#$$P(X \leq k)=\sum_{i=0}^{k}\binom{n}{i}p^i(1-p)^{n-i}$$</code></pre>
 <p><span class="math display">\[P({X}=k)\ = \binom{n}{k} p^k(1-p)^{n-k}\]</span> <span class="math display">\[P(X \leq k)=\sum_{i=0}^{k}\binom{n}{i}p^i(1-p)^{n-i}\]</span></p>
 </div>
 <div id="poisson" class="section level2">
 <h2>Poisson</h2>
 <p><span class="math display">\[X \sim Poi(\lambda)\]</span></p>
+<pre class="r"><code>#$$X \sim Poi(\lambda)$$
+#$$P(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}$$
+#$$P(X \leq k) = \sum_{i=0}^{k}\frac{\lambda^{i}e^{-\lambda}}{i!}$$</code></pre>
 <p><span class="math display">\[P(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}\]</span> <span class="math display">\[P(X \leq k) = \sum_{i=0}^{k}\frac{\lambda^{i}e^{-\lambda}}{i!}\]</span></p>
 </div>
 </div>
@@ -1614,12 +1620,24 @@ div.tocify {
 <h1>Continuos Distribution</h1>
 <div id="uniform-distribution" class="section level2">
 <h2>Uniform Distribution</h2>
+<pre class="r"><code>#$$X\sim Unif(a,b)$$
+#$$f(x) = \frac{1}{b-a}$$
+#$$P(X\leq k) = P(X&lt;k)= \int_{a}^{k}f(x)dx = \int_{a}^{k}\frac{1}{b-a}dx,~(a\leq k \leq b) $$</code></pre>
 <p><span class="math display">\[X\sim Unif(a,b)\]</span></p>
 <p>The pdf of uniform distribution is:</p>
 <p><span class="math display">\[f(x) = \frac{1}{b-a}\]</span> <span class="math display">\[P(X\leq k) = P(X&lt;k)= \int_{a}^{k}f(x)dx = \int_{a}^{k}\frac{1}{b-a}dx,~(a\leq k \leq b) \]</span></p>
 </div>
 <div id="normal-distribution" class="section level2">
 <h2>Normal Distribution</h2>
+<pre class="r"><code>#$$X \sim(\mu,\sigma^2)$$
+
+#$$f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}$$
+
+#$$Z=\frac{X-\mu}{\sigma}\sim N(0,1)$$
+#$$\phi(z) = \frac{1}{\sqrt{2\pi}}e^{\frac{-z^2}{2}}$$
+
+#$$P(X\leq k) = P(Z \leq \frac{k-\mu}{\sigma}) = P(Z \leq Z_{score})$$
+#$$Z_\alpha = P(Z &lt;Z_\alpha) = \alpha$$</code></pre>
 <p><span class="math display">\[X \sim(\mu,\sigma^2)\]</span> The pdf of normal distribution is: <span class="math display">\[f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}\]</span> The standard normal distribution: <span class="math display">\[Z=\frac{X-\mu}{\sigma}\sim N(0,1)\]</span> <span class="math display">\[\phi(z) = \frac{1}{\sqrt{2\pi}}e^{\frac{-z^2}{2}}\]</span></p>
 <p><span class="math display">\[P(X\leq k) = P(Z \leq \frac{k-\mu}{\sigma}) = P(Z \leq Z_{score})\]</span> <span class="math display">\[Z_\alpha = P(Z &lt;Z_\alpha) = \alpha\]</span></p>
 </div>
@@ -1637,6 +1655,18 @@ div.tocify {
 <h1>One Sample Mean</h1>
 <div id="interval-estimation" class="section level2">
 <h2>Interval Estimation</h2>
+<pre class="r"><code>#$$
+#\begin{split}
+#n=10\\
+#\sigma =15\\
+#\bar X = 175\\
+#\alpha = 5\%\\
+#95\% CI: \bar X \pm Z_{1-\alpha/2} \cdot \sigma/ \sqrt n\\ 
+#= 175 \pm Z_{0.975}\cdot15/\sqrt{10} \\
+#= (175-1.96\cdot 15/\sqrt{10},175+1.96\cdot 15/\sqrt{10})\\
+#=(165.70,184.30)
+#\end{split}
+#$$</code></pre>
 <p>Construct the 95% CI for the true mean: <span class="math display">\[
 \begin{split}
 n=10\\
@@ -1658,6 +1688,58 @@ n=10\\
 <ul>
 <li>left tailed</li>
 </ul>
+<pre class="r"><code>#$$
+#\begin{split}
+#H_0 : \mu=\mu_0\\
+#H_1 : \mu&lt;\mu_0\\
+#\bar X=\\
+#n = \\
+#\sigma = \\
+#\alpha = \\
+#Z_{stat}= \frac{\bar X - \mu_0}{\sigma/\sqrt{n}}\\
+#Z_{critical}=Z_{\alpha} \\
+#Z_{stat} \sim N(0,1) \ under \ the \ null
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#reject $H_0$ if $Z_{stat} &lt; Z_{\alpha}$
+#
+#Fail to reject $H_0$ otherwise.
+#
+#P-value = $Pr(Z&lt; Z_{stat} | H_0)$
+#
+#
+#At 5% significance level, $Z&lt;Z_{critical}$, $Pval&lt;$, we reject the null and conclude that #there is a significant difference in ...
+#
+#
+#* Right tailed
+#
+#$$
+#\begin{split}
+#H_0 : \mu=\mu_0\\
+#H_1 : \mu&gt;\mu_0\\
+#\bar X=\\
+#n = \\
+#\sigma = \\
+#\alpha = \\
+#Z_{stat}= \frac{\bar X - \mu_0}{\sigma/\sqrt{n}}\\
+#Z_{critical}=Z_{1-\alpha} \\
+#Z_{stat} \sim N(0,1) \ under \ the \ null
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#reject $H_0$ if $Z_{stat} &gt; Z_{1-\alpha}$
+#
+#Fail to reject $H_0$ otherwise.
+#
+#P-value = $Pr(Z &gt; Z_{stat} | H_0)$
+#
+#
+#At 5% significance level, $Z_{stat}&gt;Z_{critical}$, $Pval&lt;$, we reject the null and conclude #that there is a significant difference in ...</code></pre>
 <p><span class="math display">\[
 \begin{split}
 H_0 : \mu=\mu_0\\
@@ -1700,6 +1782,32 @@ Z_{stat} \sim N(0,1) \ under \ the \ null
 </div>
 <div id="two-sided-test" class="section level3">
 <h3>Two-sided Test</h3>
+<pre class="r"><code>#$$
+#\begin{split}
+#H_0 : \mu=\mu_0\\
+#H_1 : \mu \neq \mu_0\\
+#\bar X=\\
+#n = \\
+#\sigma = \\
+#\alpha = \\
+#Z_{stat}= \frac{\bar X - \mu_0}{\sigma/\sqrt{n}}\\
+#Z_{critical}=Z_{1-\alpha/2} \\
+#Z_{stat} \sim N(0,1) \ under \ the \ null
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#reject $H_0$ if $|Z_{stat}| &gt; Z_{1-\alpha/2}$
+#
+#Fail to reject $H_0$ otherwise.
+#
+#P-value = $2\times Pr(Z &gt; Z_{stat} | H_0)$, if $Z_{stat} \geq 0$, or
+#
+#P-value = $2\times Pr(Z &lt; Z_{stat} | H_0)$, if $Z_{stat} \leq 0$
+#
+#
+#At 5% significance level, $|Z_{stat}|&gt;Z_{critical}$, $Pval&lt;$, we reject the null and #conclude that there is a significant difference in ...</code></pre>
 <p><span class="math display">\[
 \begin{split}
 H_0 : \mu=\mu_0\\
@@ -1728,6 +1836,58 @@ Z_{stat} \sim N(0,1) \ under \ the \ null
 <ul>
 <li>left tailed</li>
 </ul>
+<pre class="r"><code>#$$
+#\begin{split}
+#H_0 : \mu=\mu_0\\
+#H_1 : \mu&lt;\mu_0\\
+#\bar X=\\
+#n = \\
+#s = \\
+#\alpha = \\
+#t_{stat}= \frac{\bar X - \mu_0}{s/\sqrt{n}}\\
+#t_{critical}=t_{n-1,\alpha} \\
+#t_{stat} \sim T(n-1) \ under \ the \ null
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#reject $H_0$ if $t_{stat} &lt; t_{\alpha}$
+#
+#Fail to reject $H_0$ otherwise.
+#
+#P-value = $Pr(t_{n-1} &lt; t_{stat} | H_0)$
+#
+#
+#At 5% significance level, $t_{stat}&lt;t_{critical}$, $Pval&lt;$, we reject the null and conclude #that there is a significant difference in ...
+#
+#
+#* Right tailed
+#
+#$$
+#\begin{split}
+#H_0 : \mu=\mu_0\\
+#H_1 : \mu&gt;\mu_0\\
+#\bar X=\\
+#n = \\
+#s = \\
+#\alpha = \\
+#t_{stat}= \frac{\bar X - \mu_0}{s/\sqrt{n}}\\
+#t_{critical}=t_{n-1,1-\alpha} \\
+#t_{stat} \sim T(n-1) \ under \ the \ null
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#reject $H_0$ if $t_{stat} &gt; t_{1-\alpha}$
+#
+#Fail to reject $H_0$ otherwise.
+#
+#P-value = $Pr(t_{n-1} &gt; t_{stat} | H_0)$
+#
+#
+#At 5% significance level, $t_{stat}&gt;t_{critical}$, $Pval&lt;$, we reject the null and conclude that there is a significant difference in ...</code></pre>
 <p><span class="math display">\[
 \begin{split}
 H_0 : \mu=\mu_0\\
@@ -1770,6 +1930,65 @@ t_{stat} \sim T(n-1) \ under \ the \ null
 </div>
 <div id="two-sided-test-1" class="section level3">
 <h3>Two-sided Test</h3>
+<pre class="r"><code>#$$
+#\begin{split}
+#H_0 : \mu=\mu_0\\
+#H_1 : \mu \neq \mu_0\\
+#\bar X=\\
+#n = \\
+#s = \\
+#\alpha = \\
+#t_{stat}= \frac{\bar X - \mu_0}{s/\sqrt{n}}\\
+#t_{critical}=t_{n-1,1-\alpha/2} \\
+#t_{stat} \sim T(n-1) \ under \ the \ null
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#reject $H_0$ if $|t_{stat}| &gt; t_{n-1,1-\alpha/2}$
+#
+#Fail to reject $H_0$ otherwise.
+#
+#P-value = $2\times Pr(t_{n-1} &gt; t_{stat} | H_0)$, if $t_{stat} \geq 0$, or
+#
+#P-value = $2\times Pr(t_{n-1} &lt; t_{stat} | H_0)$, if $t_{stat} \leq 0$
+#
+#
+#At 5% significance level, $|t_{stat}|&gt;t_{critical}$, $Pval&lt;$, we reject the null and #conclude that there is a significant difference in ...
+#
+## Two Sample Mean
+#
+### Paired t-test
+#
+#This is a sample from hw3.
+#
+#$$
+#\begin{split}
+#H_0 = \mu_{post} - \mu_{pre} = \Delta = 0 \\
+#H_1 = \mu_{post} - \mu_{pre} = \Delta \neq 0 \\
+#d_1 = -8.57 \\
+#S_{d1} = 17.17 \\
+#n = 36\\
+#t_{stat}= \frac{\bar{d_1}}{S_{d1}/\sqrt{n}}=\frac{-8.58}{17.17/\sqrt{36}} = -2.99 \\
+#t_{critical}=t_{n-1, 1-\alpha/2}= t_{35, 0.975}=2.03 \\
+#t_{stat} \sim t_{35} \ under \ the \ null
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#reject $H_0$ if $|t_{stat}| &gt; t_{35, 0.975}$
+#
+#Fail to reject $H_0$ otherwise.
+#
+#Pvalue = $2* Pr(t_{35} &lt; t_{stat} | H_0) = 2* Pr(t_{35} &lt; -2.99 | H_0) = 0.005$
+#
+#
+#At 5% sifnificance level, $|t_{stat}|&gt;t_{critical}$, $Pval&lt;0.05$, we reject the null and #conclude that there is a significant difference in ...
+#
+#
+#$$CI = \bar d \pm t_{n-1, 1-\alpha/2} \times s_d/ \sqrt n$$ </code></pre>
 <p><span class="math display">\[
 \begin{split}
 H_0 : \mu=\mu_0\\
@@ -1797,6 +2016,32 @@ t_{stat} \sim T(n-1) \ under \ the \ null
 <div id="paired-t-test" class="section level2">
 <h2>Paired t-test</h2>
 <p>This is a sample from hw3.</p>
+<pre class="r"><code>#$$
+#\begin{split}
+#H_0 = \mu_{post} - \mu_{pre} = \Delta = 0 \\
+#H_1 = \mu_{post} - \mu_{pre} = \Delta \neq 0 \\
+#d_1 = -8.57 \\
+#S_{d1} = 17.17 \\
+#n = 36\\
+#t_{stat}= \frac{\bar{d_1}}{S_{d1}/\sqrt{n}}=\frac{-8.58}{17.17/\sqrt{36}} = -2.99 \\
+#t_{critical}=t_{n-1, 1-\alpha/2}= t_{35, 0.975}=2.03 \\
+#t_{stat} \sim t_{35} \ under \ the \ null
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#reject $H_0$ if $|t_{stat}| &gt; t_{35, 0.975}$
+#
+#Fail to reject $H_0$ otherwise.
+#
+#Pvalue = $2* Pr(t_{35} &lt; t_{stat} | H_0) = 2* Pr(t_{35} &lt; -2.99 | H_0) = 0.005$
+#
+#
+#At 5% sifnificance level, $|t_{stat}|&gt;t_{critical}$, $Pval&lt;0.05$, we reject the null and #conclude that there is a significant difference in ...
+#
+#
+#$$CI = \bar d \pm t_{n-1, 1-\alpha/2} \times s_d/ \sqrt n$$ </code></pre>
 <p><span class="math display">\[
 \begin{split}
 H_0 = \mu_{post} - \mu_{pre} = \Delta = 0 \\
@@ -1818,6 +2063,25 @@ t_{stat} \sim t_{35} \ under \ the \ null
 </div>
 <div id="test-for-equality-of-variance" class="section level2">
 <h2>Test for Equality of Variance</h2>
+<pre class="r"><code>#$$
+#\begin{split}
+#H_0 = \sigma^2_{d1} = \sigma^2_{d0} \\
+#H_1 = \sigma^2_{d1} \neq \sigma^2_{d0} \\
+#F_{stat}= \frac {s^2_{d1}}{s^2_{d0}} \sim F_{35,35} \ Under \ the \ Null \\
+#F_{stat}= \frac {17.17^2}{14.81^2} = 1.34 \\
+#F_{critical} = F_{35, 35, 0.975} = 1.96
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#reject $H_0$ if $F_{stat} &gt; F_{35, 35, 0.975}$
+#
+#Fail to reject $H_0$ otherwise
+#
+#Pvalue = $2* Pr(F_{n_1-1,n_2-1} &lt; F_{stat} | H_0),if~ F&lt;1$, or $2* Pr(F_{n_1-1,n_2-1} &gt; #F_{stat} | H_0),if~ F\geq 1$
+#
+#At 5% significance level, $F_{stat}&lt; F_{critical}$, we fail to reject the null and conclude #that there is not enough evidence to support a difference in the population variances.</code></pre>
 <p><span class="math display">\[
 \begin{split}
 H_0 = \sigma^2_{d1} = \sigma^2_{d0} \\
@@ -1835,6 +2099,38 @@ F_{critical} = F_{35, 35, 0.975} = 1.96
 </div>
 <div id="two-sample-independent-test-equal-variance" class="section level2">
 <h2>Two-sample independent test, equal variance</h2>
+<pre class="r"><code>#$$
+#\begin{split}
+#H_0 = \mu_{d1} - \mu_{d0} = 0 \\
+#H_1 = \mu_{d1} - \mu_{d0} \neq 0
+#\end{split}
+#$$
+#
+#
+#$$
+#\begin{split}
+#\bar{X_1} - \bar{X_2} \sim N(\mu_1-\mu_2,\frac{\sigma^2}{n_1}+\frac{\sigma^2}{n_2}) ~if~ #the~ population~ variance~ is~ given\\
+#otherwise,\\
+#t_{stat} = \frac {\bar{X_{d1}} - \bar{X_{d0}}} {s\sqrt {1/n_1 + 1/n_0}} \sim t_{n_1+n_0-2, #1-\alpha/2} \\
+#where \ s= \sqrt{\frac{(n_1-1)s_1^2+(n_0-1)s_0^2}{n_1+n_2-2}} \\
+#s = \sqrt{\frac{(35)(219.34)+(35)(294.81)}{70}} = 16.03 \\
+#t_{stat} = \frac {-8.58 + 3.33}{(16.03)\sqrt {1/36 + 1/36}} = -1.39 \\
+#t_{critical} = t_{n_1+n_0-2, 1-\alpha/2} = t_{70, 0.975} = 1.99
+#\end{split}
+#$$
+#**Decision Rule:**
+#
+#reject $H_0$ if $|t_{stat}| &gt; t_{critical}$
+#
+#Fail to reject $H_0$ otherwise.
+#
+#Pvalue = $2* Pr(t_{70} &lt; t_{stat} | H_0) =2* Pr(t_{70} &lt; -1.39 | H_0)$ = 0.17
+#
+#At 5% significance level, $|t_{stat}|&lt;t_{critical}$, $Pval&gt;0.05$, we fail to reject the #null and conclude that there is not enough evidence to support a difference in the mean SBP #between the intervention group and control group.  
+#
+#This conclusion is supported by the 95% confidence interval since 0 is contained within the #interval:  
+#
+#$$ CI = \bar{X_{d1}} - \bar{X_{d0}} \pm t_{n_1+n_0-2, 1-\alpha/2} \times s \sqrt {1/n_1 + #1/n_0} = (-8.58 + 3.33) \pm 1.99 \times 16.03 \sqrt{1/36 + 1/36} = (-12.77, 2.27)$$</code></pre>
 <p><span class="math display">\[
 \begin{split}
 H_0 = \mu_{d1} - \mu_{d0} = 0 \\
@@ -1861,6 +2157,15 @@ t_{critical} = t_{n_1+n_0-2, 1-\alpha/2} = t_{70, 0.975} = 1.99
 </div>
 <div id="two-sample-independent-test-unequal-variance" class="section level2">
 <h2>Two-sample independent test, unequal variance</h2>
+<pre class="r"><code>#$$
+#\begin{split}
+#\bar{X_1} - \bar{X_2} \sim N(\mu_1-\mu_2,\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}) #~if~ the~ population~ variance~ is~ given\\
+#otherwise,\\
+#t_{stat} = \frac{\bar{X_1} - \bar{X_2}}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}~\sim t_{d&#39;&#39;}\\
+#d&#39;&#39; =[d&#39;],~where,\\
+#d&#39; = \frac{(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2})^2}{\frac{s_1^2}{n_1}^2/(n_1-1)+\frac{s_2^2}{n_2}^2/(n_2-1)}
+#\end{split}
+#$$</code></pre>
 <p><span class="math display">\[
 \begin{split}
 \bar{X_1} - \bar{X_2} \sim N(\mu_1-\mu_2,\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}) ~if~ the~ population~ variance~ is~ given\\
@@ -1874,6 +2179,26 @@ d&#39; = \frac{(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2})^2}{\frac{s_1^2}{n_1}^2/(n_1
 </div>
 <div id="anova" class="section level1">
 <h1>ANOVA</h1>
+<pre class="r"><code>#$$
+#\begin{split}
+#H_0: \mu_1=\mu_2=...=\mu _k\\
+#H_1: at~least~two~means~are~not~equal\\
+#Between~SS = \sum_{i=1}^k\sum_{j=1}^{n_i}(\bar{y_i} - \bar{\bar{y}})^2\\
+#Within~SS = \sum_{i=1}^k\sum_{j=1}^{n_i}(y_{ij}-\bar{y_i})^2\\
+#Between~Mean~Square = \frac{\sum_{i=1}^k\sum_{j=1}^{n_i}(\bar{y_i} - #\bar{\bar{y}})^2}{k-1}=\sum_{i=1}^kn_i\bar{y_i}^2-\frac{y_{..}^2}{n}\\
+#Within~Mean~Square = \frac{\sum_{i=1}^k\sum_{j=1}^{n_i}(y_{ij}-\bar{y_i})^2}{n-k}=\sum_{i=1#}^k(n_i-1)s_i^2\\
+#F_{stat} = \frac{Between~Mean~Square}{Within~Mean~Square} \sim F(k-1,n-k)
+#\end{split}
+#$$
+#
+#
+#**Decision Rule:**
+#
+#Reject $H_0$ if $F&gt;F_{k-1,n-k,1-\alpha}$
+#
+#Fail to reject $H_0$ otherwise.
+#
+#Pvalue = $Pr(F_{k-1,n-k}&gt;F_{stat})$</code></pre>
 <p><span class="math display">\[
 \begin{split}
 H_0: \mu_1=\mu_2=...=\mu _k\\
@@ -1892,6 +2217,42 @@ F_{stat} = \frac{Between~Mean~Square}{Within~Mean~Square} \sim F(k-1,n-k)
 </div>
 <div id="one-sample-prop" class="section level1">
 <h1>One Sample Prop</h1>
+<pre class="r"><code>#$$\bar X \sim N(p,\frac{p(1-p)}{n})$$
+#
+#$$
+#\begin{split}
+#H_0:p=p_0\\
+#H_1: p \neq p_0\\
+#\hat p = \frac{\sum_{i=1}^{n}X_i}{n}=\frac{X}{n}\\
+#Z_{stat} = \frac{|\hat p -p_0|-\frac{1}{2n}}{\sqrt{p_0(1-p_0)/n}}\sim N(0,1),under~H_0    
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#Reject $H_0$ if $|Z_{stat}|&gt; Z_{1-\alpha/2}$,
+#
+#fail to reject $H_0$ otherwise.
+#
+#Pvalue = $2\times [1-\Phi (Z_{stat})]$
+#
+#
+#$100(1-\alpha)\%~CI: (\hat p -Z_{1-\alpha/2}\cdot\sqrt{\frac{\hat p(1-\hat #p)}{n}}-\frac{1}{2n},\hat p +Z_{1-\alpha/2}\cdot\sqrt{\frac{\hat p(1-\hat #p)}{n}}-\frac{1}{2n})$
+#
+#**if assumption of normal approximation is not valid**
+#
+#If$\hat p \leq p_0$,Pvalue = $2\times Pr(\leq x~successes~in~n~trials|H_0) = \sum_{k=0}^{x} #\binom{n}{k}p_0^k(1-p_0)^{n-k}$
+#
+#If$\hat p \geq p_0$,Pvalue = $2\times Pr(\geq x~successes~in~n~trials|H_0) = \sum_{k=x}^{n} #\binom{n}{k}p_0^k(1-p_0)^{n-k}$
+#
+#$$
+#\begin{split}
+#Exact~100(1-\alpha)\%~CI:(p_L,p_U)\\
+#where,\\
+#P(X\geq x|p=p_L)=\frac{\alpha}{2}=\sum_{k=x}^{n}\binom{n}{k}p_L^k(1-p_L)^{n-k}\\
+#P(X\leq x|p=p_U)=\frac{\alpha}{2}=\sum_{k=0}^{x}\binom{n}{k}p_U^k(1-p_U)^{n-k}
+#\end{split}
+#$$</code></pre>
 <p><span class="math display">\[\bar X \sim N(p,\frac{p(1-p)}{n})\]</span></p>
 <p><span class="math display">\[
 \begin{split}
@@ -1920,6 +2281,27 @@ P(X\leq x|p=p_U)=\frac{\alpha}{2}=\sum_{k=0}^{x}\binom{n}{k}p_U^k(1-p_U)^{n-k}
 </div>
 <div id="two-sample-prop" class="section level1">
 <h1>Two Sample Prop</h1>
+<pre class="r"><code>#$$
+#\begin{split}
+#\hat p_1\sim N(p_1,p_1(1-p_1)/n_1)\\
+#\hat p_2\sim N(p_2,p_1(1-p_2)/n_2)\\
+#\hat p_1 -\hat p_2 \sim N(p_1-p_2,\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2})\\
+#H_0: p1=p2=p\\
+#H_1:p1 \neq p2\\
+#if~the~null~hypothesis~is~true:\\
+#\hat p_1 -\hat p_2 \sim N(0,p(1-p)\cdot (\frac{1}{n_1}+\frac{1}{n_2}))\\
+#Z_{stat} = \frac{|\hat p_1 -\hat p_2|-(\frac{1}{2n_1}+\frac{1}{2n_1})}{\sqrt{\hat p \hat q #(\frac{1}{n_1}+\frac{1}{n_2})}},~where,\\
+#\hat p = \frac{n_1\hat p_1+n2\hat p_2}{n_1+n_2}~and~\hat q=1- \hat p
+#\end{split}
+#$$
+#
+#**Decision Rule:**
+#
+#Reject $H_0$ if $|Z_{stat}|&gt;Z_{1-\alpha/2}$,
+#
+#Fail to reject $H_0$ otherwise.
+#
+#$$Two-sided~100(1-\alpha)\%~CI=\hat p_1 -\hat p_2\pm Z_{1-\alpha/2}\sqrt{\frac{\hat #p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}$$</code></pre>
 <p><span class="math display">\[
 \begin{split}
 \hat p_1\sim N(p_1,p_1(1-p_1)/n_1)\\
@@ -1942,6 +2324,13 @@ Z_{stat} = \frac{|\hat p_1 -\hat p_2|-(\frac{1}{2n_1}+\frac{1}{2n_1})}{\sqrt{\ha
 <h1>Chi_Sq</h1>
 <div id="test-of-homogeneity" class="section level2">
 <h2>Test of Homogeneity</h2>
+<pre class="r"><code>#$$
+#\begin{split}
+#H_0:p_{1j} =p_{2j}=...=p_{Rj}=p_(.j)\\
+#H_1: p_{ij}\neq p_{i&#39;j},~j=1,2,...,C,i\neq i&#39;\\
+#\chi^2_{stat} = \sum_i^{R}\sum_j^{C}\frac{(n_{ij}-E_{ij})^2}{E_{ij}} \sim \chi^2_{ #(R-1)\times(C-1)},where~df = (R-1)\times(C-1)
+#\end{split}
+#$$</code></pre>
 <p><span class="math display">\[
 \begin{split}
 H_0:p_{1j} =p_{2j}=...=p_{Rj}=p_(.j)\\
@@ -1970,6 +2359,14 @@ Under~the~null~hypothesis:\chi^2_{stat} \sim \chi^2_1
 </div>
 <div id="mcnemars" class="section level2">
 <h2>McNemar’s</h2>
+<pre class="r"><code>#$$
+#\begin{split}
+#H_0:p=\frac{1}{2}\\
+#H_1:p\neq \frac{1}{2}\\
+#n_A\sim Bin(n_D,0.5)\\
+#\chi^2_{stat}=\frac{(|n_A-\frac{n_D}{2}|-\frac{1}{2})^2}{\frac{n_D}{4}}=\frac{(|n_A-n_B|-1)#^2}{n_A+n_B}
+#\end{split}
+#$$</code></pre>
 <p><span class="math display">\[
 \begin{split}
 H_0:p=\frac{1}{2}\\
