@@ -1,0 +1,28 @@
+---
+title: "Cheat Sheet is GOOD "
+author: "Renjie Wei"
+date: "10/29/2020"
+output: 
+  html_document:
+    toc: true
+    toc_float : true
+    code_folding: hide
+---
+
+# Discrete Distribution
+
+# Continuos Distribution
+
+# One Sample Mean
+
+# Two Sample Mean
+
+# ANOVA
+
+# One Sample Prop
+
+# Two Sample Prop
+
+# Chi_Sq
+
+# Fisher's Exact and McNemar
